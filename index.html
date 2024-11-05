@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic DOM Event Practice with Mouse Event</title>
+    <style>
+        #loginButton {
+            background-color: lightblue;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        #loginButton:hover {
+            background-color: deepskyblue;
+        }
+    </style>
+</head>
+<body>
+
+    <h1> Event</h1>
+    
+    <form id="basicForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username"><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password"><br><br>
+
+        <button type="submit" id="loginButton">Login</button>
+    </form>
+
+    <p id="message"></p>
+
+    <script>
+        window.addEventListener('load', function() {
+            alert('Welcome! Please enter your details.');
+        });
+
+        let form = document.getElementById('basicForm');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); 
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            document.getElementById('message').innerText = 
+                `Welcome, ${username}! Your form has been submitted.`;
+
+            console.log('Submitted Data:', { username, password });
+        });
+
+        let usernameField = document.getElementById('username');
+        usernameField.addEventListener('keypress', function(event) {
+            console.log(`Key pressed in Username: ${event.key}`);
+        });
+
+
+        let loginButton = document.getElementById('loginButton');
+        loginButton.addEventListener('mouseover', function() {
+            document.getElementById('message').innerText = 'Ready to login?';
+        });
+
+        loginButton.addEventListener('mouseout', function() {
+            document.getElementById('message').innerText = '';
+        });
+    </script>
+
+</body>
+</html>
